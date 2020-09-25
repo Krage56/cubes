@@ -3,10 +3,12 @@
 #include <tuple>
 #include "functions.h"
 using namespace std;
-int main() {
+int main(int argc, char* argv[]) {
     ifstream file;
     ofstream answer;
-    file.open("../cubesTests/test3.in", ios_base::in);
+    //file.open("../maxFlowTests/test1.in", ios_base::in);
+    file.open(argv[1], ios_base::in);
+    answer.open("./answer.out", ios_base::out);
     vector<set<char>>cubes; string word;
     tie(cubes, word) = processing(&file);
     vector<vector<int>> f(2 + cubes.size() + word.size());
@@ -52,11 +54,12 @@ int main() {
         res += e;
     }
     if(res == word.size()){
-        cout << "YES" << endl;
+        answer << "YES";
     }
     else{
-        cout << "NO" << endl;
+        answer << "NO";
     }
     file.close();
+    answer.close();
     return 0;
 }
